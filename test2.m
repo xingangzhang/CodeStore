@@ -1,0 +1,23 @@
+fs=500; 
+t=0:1/fs:1;
+smart=smart'
+x=sin(2*pi*20*t)+2*sin(2*pi*100*t)+5*sin(2*pi*200*t); 
+wp=2*30/fs;
+ws=2*60/fs;
+Rp=1;
+As=30; 
+subplot(311);
+plot(t,smart);
+axis([0.4,0.5,-5,-4]);
+title(' ‰»Î–≈∫≈');
+[N,wc]=buttord(wp,ws,Rp,As);
+[B,A]=butter(N,wc); 
+[H,W]=freqz(B,A);
+y=filter(B,A,smart);
+subplot(312);
+plot(W,abs(H)); 
+title('µÕÕ®¬À≤®∆˜');
+subplot(313);
+plot(t,y)
+title('30Hz'); 
+axis([0.4,0.5,-5,-4]);
